@@ -1,1 +1,0 @@
-first step：卡在了nand做not，我现在需要重新捡起逻辑电路知识。

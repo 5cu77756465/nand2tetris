@@ -12,4 +12,9 @@ CHIP And {
     
     PARTS:
     //// Replace this comment with your code.
+	//Nand(a=nota ,b=notb , out=out);
+	//这一个我看错了，教材上有一个nota我以为表示否定，结果他只是一个变量
+	Nand(a=a , b=b, out=out1);
+	Not(in=out1 ,out=out);
+	//这里可以记下，左边的是芯片自身接口，右边的才是用来交换数据的载体。
 }
