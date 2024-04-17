@@ -12,4 +12,7 @@ CHIP FullAdder {
 
     PARTS:
     //// Replace this comment with your code.
+	HalfAdder(a=a, b=b, sum=ab_sum, carry=ab_carry); // 计算 a 和 b 的和，并得到进位
+    HalfAdder(a=ab_sum, b=c, sum=sum, carry=bc_carry); // 将上一步的和与 c 相加，并得到新的和以及进位
+    Or(a=ab_carry, b=bc_carry, out=carry); // 将两次计算的进位相或得到最终的进位
 }

@@ -41,4 +41,20 @@ CHIP ALU {
 
     PARTS:
     //// Replace this comment with your code.
+	// 首先对输入 x 和 y 进行处理
+    Mux16(a=x, b=false, sel=zx, out=x_reg); // 如果 zx 信号为 1，则将 x 清零
+    Mux16(a=y, b=false, sel=zy, out=y_reg); // 如果 zy 信号为 1，则将 y 清零
+    Not16(in=x_reg, out=not_x);             // 如果 nx 信号为 1，则对 x 进行逻辑非操作
+    Not16(in=y_reg, out=not_y);             // 如果 ny 信号为 1，则对 y 进行逻辑非操作
+    
+    // 计算输出 out
+    And16(a=not_x, b=not_y, out=and_out);   // 计算 x & y
+    Add16(a=x_reg, b=y_reg, out=add_out);   // 计算 x + y
+
+    Mux16(a=and_out, b=add_out, sel=f, out=out); // 根据 f 信号选择输出结果
+
+    // 计算 zr 和 ng
+    Or16Way(in=out, out=or_out);            // 计算 out 中是否有非零位
+    Mux16(a=or_out, b=false, sel=no, out=ng); // 根据 no 信号选择是否对 ng 进行逻辑非操作
+    Mux16(a=out, b=false, sel=no, out=zr);    // 根据 no 信号选择是否对 zr 进行逻辑非操作
 }

@@ -12,4 +12,11 @@ CHIP Inc16 {
 
     PARTS:
     //// Replace this comment with your code.
+	// 定义各个部件
+    Add16(a=in, b[0]=true, b[1..15]=false, out=out);
+	/*
+	b[1..15]=false 这个语法表示将数组 b 的第 1 位到第 15 位（不包括第 16 位）都设置为 false。在这个上下文中，false 表示二进制数 0，所以这一部分的设置相当于将 b 的第 1 位到第 15 位都设置为 0。
+
+	因此，整个 b 数组的设置为 b[0]=true, b[1..15]=false 意味着将 b 的最低位设置为 1，其余位都设置为 0。*/
+	
 }

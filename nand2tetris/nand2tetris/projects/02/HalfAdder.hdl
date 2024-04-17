@@ -12,4 +12,7 @@ CHIP HalfAdder {
 
     PARTS:
     //// Replace this comment with your code.
+	// 计算 sum 和 carry
+    Xor(a=a, b=b, out=sum); // 计算异或，得到 sum
+    And(a=a, b=b, out=carry); // 计算与运算，得到 carry
 }
