@@ -15,4 +15,10 @@ CHIP Mux4Way16 {
     
     PARTS:
     //// Replace this comment with your code.
+	 // 通过两次Mux16的组合来实现4路选择
+    // 首先，根据sel[0]的值选择a, b, c, d中的一个
+    // 其次，再根据sel[1]的值选择上一步选择的两个信号中的一个
+    Mux16(a=a, b=b, sel=sel[0], out=ab);
+    Mux16(a=c, b=d, sel=sel[0], out=cd);
+    Mux16(a=ab, b=cd, sel=sel[1], out=out);
 }

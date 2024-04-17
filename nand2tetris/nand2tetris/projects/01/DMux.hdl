@@ -12,4 +12,9 @@ CHIP DMux {
 
     PARTS:
     //// Replace this comment with your code.
+	// 如果选择信号 sel 的值为 0，则将输入信号 in 分配给输出端口 a
+    Not(in=sel, out=not_sel);  // 对 sel 进行取反
+    And(a=in, b=not_sel, out=a); // 如果 sel == 0，则 not_sel == 1，这时 a = in
+    // 如果选择信号 sel 的值为 1，则将输入信号 in 分配给输出端口 b
+    And(a=in, b=sel, out=b);     // 如果 sel == 1，则 b = in
 }

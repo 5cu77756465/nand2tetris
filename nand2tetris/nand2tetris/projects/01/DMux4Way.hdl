@@ -15,4 +15,11 @@ CHIP DMux4Way {
 
     PARTS:
     //// Replace this comment with your code.
+	// 对选择信号的每一位进行分解
+
+    // sel[0] = 0，表示选择的是 a 或 b
+    DMux(in=in, sel=sel[1], a=dmux_a, b=dmux_b);
+    // 根据 sel[0] 的值，选择输出 a 或 b
+    DMux(in=dmux_a, sel=sel[0], a=a, b=b);
+    DMux(in=dmux_b, sel=sel[0], a=c, b=d);
 }

@@ -17,4 +17,16 @@ CHIP Mux8Way16 {
 
     PARTS:
     //// Replace this comment with your code.
+	// 实现8路16位的多路选择器
+
+    // 通过两次Mux16的组合来实现8路选择
+    // 首先，根据sel[0]和sel[1]的值选择a, b, c, d中的一个
+    // 其次，再根据sel[2]的值选择上一步选择的两个信号中的一个
+    Mux16(a=a, b=b, sel=sel, out=ab);
+    Mux16(a=c, b=d, sel=sel, out=cd);
+    Mux16(a=e, b=f, sel=sel, out=ef);
+    Mux16(a=g, b=h, sel=sel, out=gh);
+    Mux16(a=ab, b=cd, sel=sel[2], out=abcd);
+    Mux16(a=ef, b=gh, sel=sel[2], out=efgh);
+    Mux16(a=abcd, b=efgh, sel=sel[2], out=out);
 }
